@@ -1,0 +1,90 @@
+# ============================================================================
+# Test et, sonra yayınla
+# ----------------------------------------------------------------------------
+# main dalına her push'ta önce tests/site.test.js koşar. Testler geçmezse
+# deploy adımı HİÇ çalışmaz — bozuk site canlıya çıkmaz.
+#
+# Bunun işlemesi için deponun Pages kaynağı "GitHub Actions" olmalıdır:
+#   Settings → Pages → Build and deployment → Source: GitHub Actions
+# "Deploy from a branch" seçiliyken bu iş akışı testleri koşar ama Pages
+# yayını ondan bağımsız ilerler, yani koruma devre dışı kalır.
+# ============================================================================
+
+name: Test ve yayınla
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Aynı anda tek yayın; süren bir yayını yarıda kesme
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Denetim
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bağımlılıkları kur
+        run: npm ci --no-audit --no-fund
+
+      - name: Siteyi denetle
+        run: npm test
+
+  deploy:
+    name: Yayınla
+    needs: test          # testler geçmeden bu iş başlamaz
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # enablement, Pages kapalıysa açmayı dener. Depo hâlâ "Deploy from a
+      # branch" modundaysa bunu değiştirmez — o ayarı elle çevirmeniz gerekir.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Yayın klasörünü hazırla
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'node_modules' \
+            --exclude 'tests' \
+            --exclude '_site' \
+            --exclude 'package.json' \
+            --exclude 'package-lock.json' \
+            --exclude '.gitattributes' \
+            --exclude '.gitignore' \
+            ./ _site/
+          echo "── Yayına çıkan dosyalar ──"
+          find _site -type f | sort
+
+      - name: Yayın paketini hazırla
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - name: GitHub Pages'e gönder
+        id: deployment
+        uses: actions/deploy-pages@v4

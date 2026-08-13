@@ -166,10 +166,16 @@ Düğme ve bağlantı kendiliğinden geri gelir.
 │   ├── js/app.js       Site motoru (sayfaları data/ içeriğinden üretir)
 │   ├── img/            profile.jpg, favicon.svg
 │   └── files/          cv.pdf, ders izlenceleri, makale PDF'leri
+├── tests/site.test.js  Yayın öncesi denetim (bkz. bölüm 8)
+├── .github/workflows/  Test + otomatik yayın iş akışı
+├── package.json        Yalnızca test bağımlılığı; site için gerekmez
 ├── robots.txt          Arama motoru yönergeleri
 ├── sitemap.xml         Site haritası (yeni sayfa eklerseniz buraya da ekleyin)
 └── .nojekyll           GitHub Pages'in Jekyll işlemesini atlaması için
 ```
+
+`tests/`, `package.json` ve `.github/` yayına çıkmaz — iş akışı bunları
+yayın klasöründen ayıklar.
 
 ---
 
@@ -196,6 +202,81 @@ Düğme ve bağlantı kendiliğinden geri gelir.
 - **Yazdırma stili** — özgeçmiş sayfası kâğıda temiz çıkar.
 - **Erişilebilirlik** — klavye ile gezinme, "içeriğe geç" bağlantısı,
   odak halkaları, anlamlı `aria` etiketleri.
+
+---
+
+## 8. Testler ve otomatik yayın
+
+### Neden var
+
+İçerik `data/*.js` dosyalarında JavaScript olarak duruyor. Bir virgülü unutmak
+**tüm siteyi bembeyaz bırakır** — sayfa açılır ama hiçbir şey görünmez. Push
+ettiğiniz an canlıya çıkar ve fark etmeyebilirsiniz.
+
+Bunu önlemek için `main` dalına her push'ta bir denetim koşar. **Denetim
+geçmezse site yayınlanmaz**; canlıdaki son çalışan sürüm yerinde kalır.
+
+### Yerelde çalıştırma
+
+İlk seferde bir kez:
+
+```bash
+npm install
+```
+
+Sonra her değişiklikten sonra:
+
+```bash
+npm test
+```
+
+Ayrı bir sunucu başlatmanıza gerek yok, test kendi sunucusunu kurar.
+Sitede bir şeye elle bakmak isterseniz `npm run serve` ile
+`http://localhost:8123` açılır.
+
+### Ne denetleniyor (174 kontrol)
+
+**Veri denetimi** — `data/*.js` dosyaları okunup alan alan sınanır:
+
+- Dosyalar geçerli JavaScript mi (eksik virgül, kapanmamış tırnak)
+- Her yayında benzersiz BibTeX anahtarı, geçerli tür, "Soyad, Ad" biçiminde
+  yazarlar, `10.xxxx/yyy` biçiminde DOI (başına `https://` yazılmamış)
+- `site.js` içinde **`tr` ve `en` anahtar ağaçları birebir aynı mı** —
+  Türkçesini ekleyip İngilizcesini unutmayı yakalar
+- Biyografi, araştırma alanı ve öğrenci kaynağı listeleri iki dilde
+  aynı uzunlukta mı
+- `[DOLDURUN]` gibi yer tutucular metinlere sızmış mı
+- Fotoğraf, PDF ve izlence dosyaları gerçekten var mı
+
+**Sayfa denetimi** — beş sayfa gerçek bir tarayıcı DOM'unda iki dilde açılır:
+
+- JavaScript hatasız çalışıyor ve içerik üretiliyor mu
+- Sayılar veriyle uyuşuyor mu (yayın, ders, proje, haber, özgeçmiş girdisi)
+- Tür filtreleri doğru sayıda kayıt gösteriyor mu
+- Her yayın için BibTeX üretiliyor mu
+- Varsayılan dil İngilizce mi, `?lang=tr` çalışıyor mu
+- Randevu takvimi gömülüyor ve yedek bağlantısı var mı
+
+> Beklenen sayılar **veri dosyalarından türetilir**. Yeni yayın veya ders
+> eklediğinizde testi güncellemeniz gerekmez; testler ancak *yapı* bozulunca
+> kırılır.
+
+### Doğrulandı
+
+Denetimin işe yaradığı, kasten bozarak sınandı. Sekiz senaryonun sekizi de
+yakalandı: eksik virgül, tekrar eden BibTeX anahtarı, `https://` ile yazılmış
+DOI, yanlış biçimli yazar adı, unutulan İngilizce karşılık, sızmış yer tutucu,
+geçersiz ders düzeyi, motorda çalışma zamanı hatası.
+
+### GitHub ayarı (bir kez yapılmalı)
+
+Korumanın işlemesi için Pages'in Actions'tan yayınlaması gerekir:
+
+> **Settings → Pages → Build and deployment → Source: GitHub Actions**
+
+"Deploy from a branch" seçili kalırsa testler yine koşar ve size hata
+bildirilir, ama yayın onlardan bağımsız ilerler — yani bozuk site canlıya
+çıkabilir.
 
 ---
 

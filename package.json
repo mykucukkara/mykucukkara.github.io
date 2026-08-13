@@ -1,0 +1,16 @@
+{
+  "name": "mykucukkara-github-io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Muhammed Yusuf Küçükkara — kişisel akademik web sayfası",
+  "scripts": {
+    "test": "node tests/site.test.js",
+    "serve": "node -e \"const h=require('http'),f=require('fs'),p=require('path');const M={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.jpg':'image/jpeg','.png':'image/png','.pdf':'application/pdf','.xml':'application/xml','.txt':'text/plain; charset=utf-8'};h.createServer((q,s)=>{let r=decodeURIComponent(q.url.split('?')[0]);if(r.endsWith('/'))r+='index.html';const F=p.join(process.cwd(),r);f.readFile(F,(e,b)=>{if(e){s.writeHead(404).end();return}s.writeHead(200,{'Content-Type':M[p.extname(F)]||'application/octet-stream'});s.end(b)})}).listen(8123,()=>console.log('http://localhost:8123'))\""
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

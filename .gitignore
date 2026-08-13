@@ -5,6 +5,10 @@ CV_EN_LATEST.pdf
 # Claude Code'un bu makineye özel ayarları
 .claude/
 
+# Test bağımlılıkları ve yayın klasörü (CI kendisi üretir)
+node_modules/
+_site/
+
 # İşletim sistemi ve düzenleyici artıkları
 Thumbs.db
 Desktop.ini
