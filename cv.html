@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Özgeçmiş · Muhammed Yusuf Küçükkara</title>
+  <meta name="description" content="Muhammed Yusuf Küçükkara'nın özgeçmişi.">
+  <meta name="author" content="Muhammed Yusuf Küçükkara">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function () {
+      try {
+        var s = localStorage.getItem('myk-theme');
+        if (s !== 'light' && s !== 'dark') {
+          s = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', s);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body data-page="cv">
+  <a class="skip" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" id="site-header"></header>
+  <main class="wrap" id="main"></main>
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="data/site.js"></script>
+  <script src="data/publications.js"></script>
+  <script src="data/news.js"></script>
+  <script src="data/projects.js"></script>
+  <script src="data/courses.js"></script>
+  <script src="data/cv.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muhammed Yusuf Küçükkara</title>
+  <meta name="description" content="Muhammed Yusuf Küçükkara — Arş. Gör. Dr., Sakarya Uygulamalı Bilimler Üniversitesi Bilgisayar Mühendisliği.">
+  <meta name="author" content="Muhammed Yusuf Küçükkara">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Muhammed Yusuf Küçükkara">
+  <meta property="og:description" content="Arş. Gör. Dr., Sakarya Uygulamalı Bilimler Üniversitesi Bilgisayar Mühendisliği. Kuantum makine öğrenmesi, siber güvenlik ve genişletilmiş gerçeklik.">
+  <meta property="og:image" content="assets/img/profile.jpg">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Tema, sayfa boyanmadan önce uygulanır (açık/koyu geçiş titremesini önler) -->
+  <script>
+    (function () {
+      try {
+        var s = localStorage.getItem('myk-theme');
+        if (s !== 'light' && s !== 'dark') {
+          s = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', s);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body data-page="home">
+  <a class="skip" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" id="site-header"></header>
+  <main class="wrap" id="main"></main>
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="data/site.js"></script>
+  <script src="data/publications.js"></script>
+  <script src="data/news.js"></script>
+  <script src="data/projects.js"></script>
+  <script src="data/courses.js"></script>
+  <script src="data/cv.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

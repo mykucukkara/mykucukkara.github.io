@@ -1,0 +1,15 @@
+# Özgeçmişin kaynak kopyası. Yayına çıkan sürüm assets/files/cv.pdf.
+# İkisi birden yayımlanmasın diye burada tutuluyor; dosya diskinizde kalır.
+CV_EN_LATEST.pdf
+
+# Claude Code'un bu makineye özel ayarları
+.claude/
+
+# İşletim sistemi ve düzenleyici artıkları
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/
