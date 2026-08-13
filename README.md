@@ -234,6 +234,15 @@ Ayrı bir sunucu başlatmanıza gerek yok, test kendi sunucusunu kurar.
 Sitede bir şeye elle bakmak isterseniz `npm run serve` ile
 `http://localhost:8123` açılır.
 
+**Yayındaki siteyi denetlemek** için (push ettiğiniz şey gerçekten canlıda mı):
+
+```bash
+TEST_BASE=https://mykucukkara.github.io/ npm test
+```
+
+Sayfalar canlıdan çekilir, beklenen değerler yerel `data/*.js` dosyalarından
+türetilir. Windows PowerShell'de: `$env:TEST_BASE="https://mykucukkara.github.io/"; npm test`
+
 ### Ne denetleniyor (174 kontrol)
 
 **Veri denetimi** — `data/*.js` dosyaları okunup alan alan sınanır:

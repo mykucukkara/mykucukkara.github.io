@@ -28,7 +28,14 @@ const { JSDOM, VirtualConsole } = require('jsdom');
 
 const ROOT = path.resolve(__dirname, '..');
 const PORT = Number(process.env.TEST_PORT || 8199);
-const BASE = `http://127.0.0.1:${PORT}/`;
+
+// Varsayılan: yerel dosyalar kendi sunucumuz üzerinden denetlenir.
+// TEST_BASE verilirse yayındaki site denetlenir; beklenen değerler yine
+// yerel data/*.js dosyalarından türetilir, yani "push ettiğim şey gerçekten
+// canlıda mı?" sorusunu yanıtlar:
+//   TEST_BASE=https://mykucukkara.github.io/ npm test
+const REMOTE = process.env.TEST_BASE ? process.env.TEST_BASE.replace(/\/*$/, '/') : '';
+const BASE = REMOTE || `http://127.0.0.1:${PORT}/`;
 
 let failed = 0;
 let passed = 0;
@@ -401,11 +408,12 @@ async function validatePages(data) {
     process.exit(1);
   }
 
-  const server = await startServer();
+  const server = REMOTE ? null : await startServer();
+  if (REMOTE) console.log(`\n  (yayındaki site denetleniyor: ${REMOTE})`);
   try {
     await validatePages(data);
   } finally {
-    server.close();
+    if (server) server.close();
   }
 
   const total = passed + failed;
