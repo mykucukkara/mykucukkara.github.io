@@ -69,6 +69,9 @@ window.SITE = {
     university: "Sakarya Uygulamalı Bilimler Üniversitesi",
     office: "T3-354",
 
+    // İdari görev. Boş bırakırsanız ana sayfadaki satır hiç görünmez.
+    adminRole: "Koordinatör Yardımcısı · Üniversite-İş Dünyası İş Birliği Koordinatörlüğü",
+
     siteTitle: "Muhammed Yusuf Küçükkara",
     metaDescription: "Muhammed Yusuf Küçükkara — Arş. Gör. Dr., Sakarya Uygulamalı Bilimler Üniversitesi Bilgisayar Mühendisliği. Kuantum makine öğrenmesi, siber güvenlik ve genişletilmiş gerçeklik üzerine araştırmalar.",
 
@@ -195,9 +198,10 @@ window.SITE = {
       heading: "Özgeçmiş",
       intro: "Ayrıntılı özgeçmişin PDF sürümünü aşağıdan indirebilirsiniz.",
       sections: {
-        education:    "Eğitim",
-        experience:   "Görevler",
-        awards:       "Ödüller ve Burslar",
+        education:      "Eğitim",
+        experience:     "Akademik Görevler",
+        administrative: "İdari Görevler",
+        awards:         "Ödüller ve Burslar",
         service:      "Akademik Hizmet",
         languages:    "Diller",
         skills:       "Beceriler",
@@ -217,6 +221,10 @@ window.SITE = {
     faculty: "Faculty of Technology",
     university: "Sakarya University of Applied Sciences",
     office: "T3-354",
+
+    // Birimin resmî İngilizce adı üniversitenin sitesinde bulunamadı;
+    // kurum başka bir karşılık kullanıyorsa burayı ona göre düzeltin.
+    adminRole: "Deputy Coordinator · University–Business Collaboration Coordinatorship",
 
     siteTitle: "Muhammed Yusuf Küçükkara",
     metaDescription: "Muhammed Yusuf Küçükkara — Research Assistant, Ph.D., Department of Computer Engineering, Sakarya University of Applied Sciences. Research on quantum machine learning, cyber security and extended reality.",
@@ -343,9 +351,10 @@ window.SITE = {
       heading: "Curriculum Vitae",
       intro: "A detailed PDF version of my CV is available below.",
       sections: {
-        education:    "Education",
-        experience:   "Appointments",
-        awards:       "Awards and Fellowships",
+        education:      "Education",
+        experience:     "Academic Appointments",
+        administrative: "Administrative Roles",
+        awards:         "Awards and Fellowships",
         service:      "Academic Service",
         languages:    "Languages",
         skills:       "Skills",

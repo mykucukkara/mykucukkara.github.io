@@ -279,6 +279,15 @@ main { padding: 44px 0 8px; }
 .profile-role strong { color: var(--text); font-weight: 600; }
 .profile-role span { display: block; }
 
+/* İdari görev satırı — akademik unvandan görsel olarak ayrılır */
+.profile-role .admin-role {
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px solid var(--border);
+  font-size: .88rem;
+  color: var(--faint);
+}
+
 .profile-photo {
   flex: 0 0 auto;
   width: 168px;

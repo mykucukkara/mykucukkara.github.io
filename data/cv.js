@@ -112,6 +112,28 @@ window.CV = {
     }
   ],
 
+  /* Akademik görevlerden ayrı tutulur; sitede "İdari Görevler" başlığı altında
+     listelenir. Görev tanımı aşağıda birimin genel kapsamıyla yazıldı —
+     kendi sorumluluk alanınıza göre daraltıp değiştirebilirsiniz. */
+  administrative: [
+    {
+      period: { tr: "May 2026 – günümüz", en: "May 2026 – present" },
+      title: { tr: "Koordinatör Yardımcısı", en: "Deputy Coordinator" },
+      org: {
+        tr: "Üniversite-İş Dünyası İş Birliği Koordinatörlüğü, Sakarya Uygulamalı Bilimler Üniversitesi",
+        en: "University–Business Collaboration Coordinatorship, Sakarya University of Applied Sciences"
+      },
+      note: {
+        tr: "Üniversitenin iş dünyası, kamu ve sivil toplum kuruluşlarıyla " +
+            "yürüttüğü iş birliklerini ve +1 uygulamalı eğitim modeli süreçlerini " +
+            "tek merkezden koordine eden birim.",
+        en: "The unit that coordinates the university's collaborations with business, " +
+            "public and civil society organisations, together with the +1 applied " +
+            "education model, from a single centre."
+      }
+    }
+  ],
+
   awards: [
     {
       period: "2025",

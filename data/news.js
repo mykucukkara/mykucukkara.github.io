@@ -23,6 +23,14 @@ window.NEWS = [
   },
 
   {
+    date: "2026-05",
+    text: {
+      tr: "Üniversitemizde kurulan <strong>Üniversite-İş Dünyası İş Birliği Koordinatörlüğü</strong>'nde koordinatör yardımcılığı görevine başladım.",
+      en: "Took up the role of Deputy Coordinator at the newly established <strong>University–Business Collaboration Coordinatorship</strong> of my university."
+    }
+  },
+
+  {
     date: "2026-04",
     text: {
       tr: "<strong>Doktora tezimi tamamladım.</strong> Sakarya Üniversitesi'nde “A New Hybrid Quantum Neural Network Model for Attack Detection in Cybersecurity” başlıklı çalışmayla doktora derecemi aldım.",

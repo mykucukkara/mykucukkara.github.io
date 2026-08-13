@@ -422,6 +422,8 @@
             '<span><strong>' + esc(t.role) + '</strong></span>' +
             '<span>' + esc(t.department) + (t.faculty ? ', ' + esc(t.faculty) : '') + '</span>' +
             '<span>' + esc(t.university) + '</span>' +
+            // İdari görev (varsa) ayrı ve daha sönük bir satırda
+            (t.adminRole ? '<span class="admin-role">' + esc(t.adminRole) + '</span>' : '') +
           '</div>' +
           '<div class="link-row">' + linkChips(t) + '</div>' +
           '<div class="meta-row">' +
@@ -655,7 +657,7 @@
   /* Özgeçmiş sayfası */
   function pageCV(t, lang) {
     var CV = window.CV || {};
-    var order = ['education', 'experience', 'awards', 'service',
+    var order = ['education', 'experience', 'administrative', 'awards', 'service',
                  'languages', 'skills', 'volunteering', 'membership'];
 
     var buttons = '<div class="btn-row">';
