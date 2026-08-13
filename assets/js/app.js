@@ -60,7 +60,9 @@
     var saved = null;
     try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
     if (saved === 'tr' || saved === 'en') return saved;
-    return String(navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+    // Varsayılan İngilizce: tarayıcı dili Türkçe olsa bile. Uluslararası
+    // görünürlük önceliği. Ziyaretçi TR'ye geçerse tercihi hatırlanır.
+    return 'en';
   }
 
   function setLang(lang) {

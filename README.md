@@ -175,8 +175,14 @@ Düğme ve bağlantı kendiliğinden geri gelir.
 
 ## 6. Özellikler
 
-- **İki dilli (TR/EN)** — sağ üstteki düğme. Tercih tarayıcıda saklanır.
-  `?lang=en` ekiyle doğrudan İngilizce bağlantı paylaşabilirsiniz.
+- **İki dilli (TR/EN)** — sağ üstteki düğme. **Varsayılan İngilizce**: ziyaretçinin
+  tarayıcı dili Türkçe olsa bile site İngilizce açılır (uluslararası görünürlük
+  önceliği). Türkçeye geçen ziyaretçinin tercihi tarayıcısında saklanır ve
+  sonraki gelişlerinde hatırlanır. `?lang=tr` ekiyle doğrudan Türkçe bağlantı
+  paylaşabilirsiniz. Varsayılanı Türkçe yapmak isterseniz `assets/js/app.js`
+  içindeki `getLang()` fonksiyonunun son satırını `return 'tr';` yapın ve
+  HTML dosyalarındaki `lang="en"` / `<title>` / `description` değerlerini
+  Türkçeye çevirin.
 - **Açık/koyu tema** — sistem tercihine uyar, elle değiştirilebilir.
 - **Otomatik BibTeX** — her yayının altındaki düğmeden açılır, kopyalanabilir.
 - **Randevu takvimi** — Google Takvim randevu sayfanız Dersler sayfasına gömülü
